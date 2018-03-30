@@ -21,7 +21,14 @@
 
 
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0)
+
+include(cmake/HunterGate.cmake)
+HunterGate(
+    URL "https://github.com/ruslo/hunter/archive/v0.19.129.tar.gz"
+    SHA1 "3e190ff47df41cc16d32c479b9617309e01405bf"
+    LOCAL
+)
 
 set(PACKAGE_NAME      "grpc")
 set(PACKAGE_VERSION   "1.10.0")
@@ -50,25 +57,25 @@ set(gRPC_INSTALL ${gRPC_INSTALL_default} CACHE BOOL
 # "module": build the dependency using sources from git submodule (under third_party)
 # "package": use cmake's find_package functionality to locate a pre-installed dependency
 
-set(gRPC_ZLIB_PROVIDER "module" CACHE STRING "Provider of zlib library")
+set(gRPC_ZLIB_PROVIDER "package" CACHE STRING "Provider of zlib library")
 set_property(CACHE gRPC_ZLIB_PROVIDER PROPERTY STRINGS "module" "package")
 
-set(gRPC_CARES_PROVIDER "module" CACHE STRING "Provider of c-ares library")
+set(gRPC_CARES_PROVIDER "package" CACHE STRING "Provider of c-ares library")
 set_property(CACHE gRPC_CARES_PROVIDER PROPERTY STRINGS "module" "package")
 
-set(gRPC_SSL_PROVIDER "module" CACHE STRING "Provider of ssl library")
+set(gRPC_SSL_PROVIDER "package" CACHE STRING "Provider of ssl library")
 set_property(CACHE gRPC_SSL_PROVIDER PROPERTY STRINGS "module" "package")
 
-set(gRPC_PROTOBUF_PROVIDER "module" CACHE STRING "Provider of protobuf library")
+set(gRPC_PROTOBUF_PROVIDER "package" CACHE STRING "Provider of protobuf library")
 set_property(CACHE gRPC_PROTOBUF_PROVIDER PROPERTY STRINGS "module" "package")
 
-set(gRPC_PROTOBUF_PACKAGE_TYPE "" CACHE STRING "Algorithm for searching protobuf package")
+set(gRPC_PROTOBUF_PACKAGE_TYPE "CONFIG" CACHE STRING "Algorithm for searching protobuf package")
 set_property(CACHE gRPC_PROTOBUF_PACKAGE_TYPE PROPERTY STRINGS "CONFIG" "MODULE")
 
-set(gRPC_GFLAGS_PROVIDER "module" CACHE STRING "Provider of gflags library")
+set(gRPC_GFLAGS_PROVIDER "package" CACHE STRING "Provider of gflags library")
 set_property(CACHE gRPC_GFLAGS_PROVIDER PROPERTY STRINGS "module" "package")
 
-set(gRPC_BENCHMARK_PROVIDER "module" CACHE STRING "Provider of benchmark library")
+set(gRPC_BENCHMARK_PROVIDER "package" CACHE STRING "Provider of benchmark library")
 set_property(CACHE gRPC_BENCHMARK_PROVIDER PROPERTY STRINGS "module" "package")
 
 set(gRPC_USE_PROTO_LITE OFF CACHE BOOL "Use the protobuf-lite library")
