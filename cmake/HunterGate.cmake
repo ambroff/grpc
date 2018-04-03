@@ -42,6 +42,14 @@
 #     * https://github.com/hunter-packages/gate/
 #     * https://github.com/ruslo/hunter
 
+include(ProcessorCount)
+ProcessorCount(THIS_SYSTEM_CPU_COUNT)
+set(HUNTER_JOBS_NUMBER ${THIS_SYSTEM_CPU_COUNT} CACHE STRING "Hunter jobs number")
+
+list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_SOURCE_DIR}/cmake/Hunter/find")
+
+option(HUNTER_USE_CACHE_SERVERS "Use cache servers" NO)
+
 option(HUNTER_ENABLED "Enable Hunter package manager support" ON)
 if(HUNTER_ENABLED)
   if(CMAKE_VERSION VERSION_LESS "3.0")
@@ -408,7 +416,7 @@ macro(HunterGate)
     endif()
 
     cmake_parse_arguments(
-        HUNTER_GATE "LOCAL" "URL;SHA1;GLOBAL;FILEPATH" "" ${ARGV}
+        HUNTER_GATE "LOCAL" "URL;SHA1;GLOBAL;FILEPATH;PRIVATE_PACKAGES" "" ${ARGV}
     )
 
     string(COMPARE EQUAL "${HUNTER_GATE_SHA1}" "" _empty_sha1)
