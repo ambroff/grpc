@@ -24,6 +24,14 @@
 
 cmake_minimum_required(VERSION 3.5.1)
 
+include(cmake/HunterGate.cmake)
+HunterGate(
+    URL "https://github.com/ambroff/hunter/archive/incubator-2020-05-11_2.zip"
+    SHA1 "23aa65eedd3ac6b0ed520db29e9bb1d5f2a826da"
+    LOCAL
+    PRIVATE_PACKAGES "${CMAKE_SOURCE_DIR}/cmake/Hunter/packages"
+)
+
 set(PACKAGE_NAME          "grpc")
 set(PACKAGE_VERSION       "1.30.0")
 set(gRPC_CORE_VERSION     "10.0.0")
@@ -69,33 +77,33 @@ endif()
 # "module": build the dependency using sources from git submodule (under third_party)
 # "package": use cmake's find_package functionality to locate a pre-installed dependency
 
-set(gRPC_ZLIB_PROVIDER "module" CACHE STRING "Provider of zlib library")
+set(gRPC_ZLIB_PROVIDER "package" CACHE STRING "Provider of zlib library")
 set_property(CACHE gRPC_ZLIB_PROVIDER PROPERTY STRINGS "module" "package")
 
-set(gRPC_CARES_PROVIDER "module" CACHE STRING "Provider of c-ares library")
+set(gRPC_CARES_PROVIDER "package" CACHE STRING "Provider of c-ares library")
 set_property(CACHE gRPC_CARES_PROVIDER PROPERTY STRINGS "module" "package")
 
-set(gRPC_SSL_PROVIDER "module" CACHE STRING "Provider of ssl library")
+set(gRPC_SSL_PROVIDER "package" CACHE STRING "Provider of ssl library")
 set_property(CACHE gRPC_SSL_PROVIDER PROPERTY STRINGS "module" "package")
 
-set(gRPC_PROTOBUF_PROVIDER "module" CACHE STRING "Provider of protobuf library")
+set(gRPC_PROTOBUF_PROVIDER "package" CACHE STRING "Provider of protobuf library")
 set_property(CACHE gRPC_PROTOBUF_PROVIDER PROPERTY STRINGS "module" "package")
 
 set(gRPC_PROTOBUF_PACKAGE_TYPE "" CACHE STRING "Algorithm for searching protobuf package")
 set_property(CACHE gRPC_PROTOBUF_PACKAGE_TYPE PROPERTY STRINGS "CONFIG" "MODULE")
 
 if(gRPC_BUILD_TESTS)
-  set(gRPC_GFLAGS_PROVIDER "module" CACHE STRING "Provider of gflags library")
+  set(gRPC_GFLAGS_PROVIDER "package" CACHE STRING "Provider of gflags library")
   set_property(CACHE gRPC_GFLAGS_PROVIDER PROPERTY STRINGS "module" "package")
 
-  set(gRPC_BENCHMARK_PROVIDER "module" CACHE STRING "Provider of benchmark library")
+  set(gRPC_BENCHMARK_PROVIDER "package" CACHE STRING "Provider of benchmark library")
   set_property(CACHE gRPC_BENCHMARK_PROVIDER PROPERTY STRINGS "module" "package")
 else()
   set(gRPC_GFLAGS_PROVIDER "none")
   set(gRPC_BENCHMARK_PROVIDER "none")
 endif()
 
-set(gRPC_ABSL_PROVIDER "module" CACHE STRING "Provider of absl library")
+set(gRPC_ABSL_PROVIDER "package" CACHE STRING "Provider of absl library")
 set_property(CACHE gRPC_ABSL_PROVIDER PROPERTY STRINGS "module" "package")
 
 set(gRPC_ABSL_USED_TARGETS
