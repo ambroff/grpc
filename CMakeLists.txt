@@ -25,10 +25,9 @@ cmake_minimum_required(VERSION 3.0)
 
 include(cmake/HunterGate.cmake)
 HunterGate(
-    URL "https://github.com/ambroff/hunter/archive/87f5898c2bd6331404bfd7626314d1de4cfa8083.zip"
-    SHA1 "9b850c78745561db6c531431b5fd79c8182d1288"
+    URL "https://github.com/ambroff/hunter/archive/incubator-2020-08-27_4.zip"
+    SHA1 "eea132eafa4b99b9737d5aa8f96e9bec01280d23"
     LOCAL
-    PRIVATE_PACKAGES "${CMAKE_SOURCE_DIR}/cmake/Hunter/packages"
 )
 
 set(PACKAGE_NAME      "grpc")
